@@ -1,11 +1,6 @@
----
-layout: default_md
-title: ActiveMQ 5 Download
-title-class: page-title-activemq5
-type: activemq5
----
+# ActiveMQ 5 Download
 
-These are the current releases. For prior releases, please see the [past releases](../../../download-archives) page.
+These are the current releases. For prior releases, please see the [past releases](download-archives.md) page.
 
 It is important to [verify the integrity](#verify-the-integrity-of-downloads) of the files you download.
 

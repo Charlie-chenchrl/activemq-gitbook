@@ -29,4 +29,4 @@ Source Code Distribution:|[activemq-parent-{{release.version}}-source-release.zi
 --------------------------------------
 #### Verify the Integrity of Downloads
 
-{% include verify_downloads.md %}
+

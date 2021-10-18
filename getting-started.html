@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>Getting Started · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="getting-started.html" />
+    <link rel="next" href="xml-configuration.md" />
     
+    
+    <link rel="prev" href="./" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -100,7 +102,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="getting-started.html">
+        <li class="chapter active" data-level="1.2" data-path="getting-started.html">
             
                 <a href="getting-started.html">
             
@@ -1668,7 +1670,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Getting Started</a>
     </h1>
 </div>
 
@@ -1683,11 +1685,251 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p><img src="images/activemq_logo_black.png" alt="ActiveMQ logo"></p>
-<h1 id="apache-activemq-user-manual">Apache ActiveMQ User Manual</h1>
-<p>Apache ActiveMQ&#xAE; is the most popular and powerful open source messaging and <a href="../../enterprise-integration-patterns">Integration Patterns</a> server.</p>
-<p>Apache ActiveMQ is fast, supports many <a href="../../cross-language-clients">Cross Language Clients and Protocols</a>, comes with easy to use <a href="../../enterprise-integration-patterns">Enterprise Integration Patterns</a> and many <a href="../../features">advanced features</a> while fully supporting <a href="http://java.sun.com/products/jms/" target="_blank">JMS 1.1</a> and J2EE 1.4. Apache ActiveMQ is released under the <a href="http://www.apache.org/" target="_blank">Apache</a> <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">2.0 License</a></p>
-<p>Grab yourself a <a href="../../download">download</a>, review our <a href="../../getting-started">Getting Started Guide</a>, surf our <a href="../../faq">FAQ</a>, or start <a href="../../contributing">contributing</a>.</p>
+                                <h3 id="introduction">Introduction</h3>
+<hr>
+<p>This document describes how to install and configure ActiveMQ 5.x for both Unix and Windows&apos; platforms.</p>
+<h3 id="document-organization">Document Organization</h3>
+<hr>
+<p>The Getting Started Guide for ActiveMQ 5.x document contains the following sections:</p>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#document-organization">Document Organization</a></li>
+<li><a href="#pre-installation-requirements">Pre-Installation Requirements</a></li>
+<li><a href="#installation-procedure-for-windows">Installation Procedure for Windows</a><ul>
+<li><a href="#windows-binary-installation">Windows Binary Installation</a></li>
+<li><a href="#windows-source-installation">Windows Source Installation</a></li>
+<li><a href="#windows-developers-release">Windows Developer&apos;s Release</a></li>
+</ul>
+</li>
+<li><a href="#installation-procedure-for-unix">Installation Procedure for Unix</a><ul>
+<li><a href="#unix-binary-installation">Unix Binary Installation</a></li>
+<li><a href="#using-homebrew-installer-on-osx">Using Homebrew installer on OSX</a></li>
+<li><a href="#unix-source-installation">Unix Source Installation</a></li>
+<li><a href="#unix-developers-release">Unix Developer&apos;s Release</a></li>
+</ul>
+</li>
+<li><a href="#starting-activemq">Starting ActiveMQ</a>    <ul>
+<li><a href="#on-windows">On Windows:</a></li>
+<li><a href="#on-unix">On Unix:</a>    </li>
+<li><a href="#more-help">More help</a></li>
+</ul>
+</li>
+<li><a href="#testing-the-installation">Testing the Installation</a><ul>
+<li><a href="#using-the-administrative-interface">Using the administrative interface</a></li>
+<li><a href="#logfile-and-console-output">Logfile and console output</a></li>
+<li><a href="#listen-port">Listen port</a></li>
+</ul>
+</li>
+<li><a href="#monitoring-activemq">Monitoring ActiveMQ</a></li>
+<li><a href="#stopping-activemq">Stopping ActiveMQ</a></li>
+<li><a href="#configuring-activemq">Configuring ActiveMQ</a></li>
+<li><a href="#additional-resources">Additional Resources</a></li>
+</ul>
+<h3 id="pre-installation-requirements">Pre-Installation Requirements</h3>
+<hr>
+<p><strong>Hardware:</strong></p>
+<ul>
+<li>~ 60 MB of free disk space for the ActiveMQ 5.x binary distribution.<br>(you need additional disk space for storing persistent messages to disk)</li>
+<li>~ 300 MB of free disk space for the ActiveMQ 5.x source or developer&apos;s distributions.</li>
+</ul>
+<p>`Operating Systems:**</p>
+<ul>
+<li>Windows: Windows XP SP2, Windows 2000, Windows Vista, Windows 7.</li>
+<li>Unix: Ubuntu Linux, Powerdog Linux, MacOS, AIX, HP-UX, Solaris, or any Unix platform that supports Java.</li>
+</ul>
+<p><strong>Environment:</strong></p>
+<ul>
+<li><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank">Java Runtime Environment (JRE)</a>  <strong>JRE 1.8</strong> or greater (1.7 for version &lt;=5.15.0, 1.6 for version &lt;=5.10.0)<br>(a JDK is required if you plan to recompile source code)</li>
+<li>The JAVA_HOME environment variable must be set to the directory where the JRE is installed<br>(Unix: the binary &quot;java&quot; has to be resolvable by the PATH variable; execute &quot;which java&quot; to verify)</li>
+<li><a href="http://maven.apache.org/" target="_blank">Maven</a> 3.0.0 build system<br>(only if you plan to recompile source code)</li>
+<li><a href="http://cvs.apache.org/repository/geronimo-spec/jars/" target="_blank">JARs</a> that will be used must be added to the classpath.<br>(only if you plan to recompile source code)</li>
+</ul>
+<h3 id="installation-procedure-for-windows">Installation Procedure for Windows</h3>
+<hr>
+<p>This section of the Getting Started Guide explains how to install binary and source distributions of ActiveMQ on a Windows system.</p>
+<h4 id="windows-binary-installation">Windows Binary Installation</h4>
+<p>This procedure explains how to download and install the binary distribution on a Windows system.</p>
+<ol>
+<li>Download the latest release<br>(see <a href="download">Download</a> -&gt; &quot;The latest stable release&quot; -&gt; &quot;apache-activemq-x.x.x-bin.zip&quot;)</li>
+<li>Extract the files from the ZIP file into a directory of your choice.</li>
+<li>Proceed to the <a href="getting-started">#Starting ActiveMQ</a> section of this document.</li>
+<li>Following start-up, go to the <a href="getting-started">#Testing the Installation</a> section of this document.</li>
+</ol>
+<h4 id="windows-source-installation">Windows Source Installation</h4>
+<p>This procedure explains how to download and install the source distribution on a Windows system.</p>
+<ol>
+<li>Download the latest release<br>(see <a href="download">Download</a> -&gt; &quot;The latest stable release&quot; -&gt; &quot;apache-activemq-x.x.x-source-release.zip&quot;)</li>
+<li>Extract ActiveMQ from the ZIP file into a directory of your choice.</li>
+<li><p>The recommended method of building ActiveMQ is the following:</p>
+<pre><code>REM add &quot;-Dmaven.test.skip=true&quot; if tests are failing on your system (should not happen)
+mvn clean install
+</code></pre><p>where <code>[activemq_install_dir]</code> is the directory in which ActiveMQ was installed.</p>
+</li>
+<li><p>If you prefer to use an IDE, then you can auto-generate the IDE&apos;s project file using maven plugins:</p>
+<pre><code>mvn eclipse:eclipse
+</code></pre><p>or</p>
+<pre><code>mvn idea:idea
+</code></pre><p>Feel free to use any other applicable IDE. Please refer to the <a href="http://maven.apache.org/reference/plugins/plugins.html" target="_blank">plugin reference</a> for more details.</p>
+</li>
+</ol>
+<ol>
+<li><p>Start ActiveMQ from the target directory, for example:</p>
+<pre><code>cd [activemq_install_dir]\assembly\target
+unzip activemq-x.x-SNAPSHOT.zip
+cd activemq-x.x-SNAPSHOT
+bin\activemq
+</code></pre><blockquote>
+<p><strong>NOTE:</strong> Working directories get created relative to the current directory. To create the working directories in the proper place, ActiveMQ must be launched from its home/installation directory.</p>
+</blockquote>
+</li>
+<li><p>Proceed to the <a href="getting-started">#Testing the Installation</a> section.</p>
+<blockquote>
+<p><strong>Warning</strong></p>
+<p>If you are building ActiveMQ 4.x under Windows using Cygwin there is a path name length limitation. If the path name length is exceeded, you may see build errors. To correct this, move the ActiveMQ source directory higher in the file system tree, e.g., /cygdrive/c/d/sm.</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="windows-developers-release">Windows Developer&apos;s Release</h4>
+<p>This procedure explains how to download and install the latest developer&apos;s snapshot.</p>
+<ol>
+<li>Open the release archive: <a href="https://repository.apache.org/content/repositories/snapshots/org/apache/activemq/apache-activemq/" target="_blank">https://repository.apache.org/content/repositories/snapshots/org/apache/activemq/apache-activemq/</a><br>(open one of the SNAPSHOT directories)</li>
+<li>Select the version of ActiveMQ to download (if necessary, scroll down to see the ActiveMQ snapshots).</li>
+<li>Extract the files from the ZIP file into a directory of your choice.</li>
+<li>If a binary snapshot was downloaded, proceed to the <a href="getting-started">#Starting ActiveMQ</a> section of this document.<br>If a source snapshot was downloaded, perform step 6 and step 7 of the <a href="getting-started">#Windows Source Installation</a> procedure.</li>
+<li>Following start-up, proceed to the <a href="getting-started">#Testing the Installation</a> section.</li>
+</ol>
+<h3 id="installation-procedure-for-unix">Installation Procedure for Unix</h3>
+<hr>
+<h4 id="unix-binary-installation">Unix Binary Installation</h4>
+<p>This procedure explains how to download and install the binary distribution on a Unix system.<br><strong>NOTE:</strong> There are several alternative ways to perform this type of installation.</p>
+<ol>
+<li>Download the activemq zipped tarball file to the Unix machine, using either a browser or a tool, i.e., wget, scp, ftp, etc. for example:<br>(see <a href="download">Download</a> -&gt; &quot;The latest stable release&quot;)<pre><code>wget http://activemq.apache.org/path/tofile/apache-activemq-x.x.x-bin.tar.gz
+</code></pre></li>
+<li>Extract the files from the zipped tarball into a directory of your choice. For example:<pre><code>cd [activemq_install_dir]
+tar zxvf activemq-x.x.x-bin.tar.gz
+</code></pre></li>
+<li><p>Proceed to the <a href="getting-started">#Starting ActiveMQ</a> section of this document.</p>
+</li>
+<li><p>Following start-up, go to the <a href="getting-started">#Testing the Installation</a> section.</p>
+</li>
+</ol>
+<h4 id="using-homebrew-installer-on-osx">Using Homebrew installer on OSX</h4>
+<p>If you use OSX as your platform, you can use <a href="http://mxcl.github.com/homebrew/" target="_blank">Homebrew</a> package manager to easily install Apache ActiveMQ.</p>
+<ol>
+<li>After installing Homebrew package manager successfully, just run<pre><code>$ brew install apache-activemq
+</code></pre>You can expect the following output:<pre><code>==\&gt; Downloading http://www.gossipcheck.com/mirrors/apache/activemq/apache-activemq/x.x.x/apache-activemq-x.x.x-bin.tar.gz
+######################################################################## 100.0%
+==\&gt; Caveats
+Software was installed to:
+  /usr/local/Cellar/apache-activemq/x.x.x/libexec
+==\&gt; Summary
+/usr/local/Cellar/apache-activemq/x.x.x: 406 files, 35M, built in 2 seconds
+</code></pre></li>
+</ol>
+<p>ActiveMQ will be installed in <code>/usr/local/Cellar/apache-activemq/x.x.x/</code> directory (where <code>x.x.x</code> denotes the actual version being installed).</p>
+<p>Now you can proceed to <a href="getting-started">#Starting ActiveMQ</a> and <a href="getting-started">#Testing the Installation</a> sections.</p>
+<h4 id="unix-source-installation">Unix Source Installation</h4>
+<p>This procedure explains how to download and install the source distribution on a Unix system. This procedure assumes the Unix machine has a browser. Please see the previous <a href="getting-started">#Unix Binary Installation</a> section for details on how to install ActiveMQ without a browser.</p>
+<ol>
+<li>Download the latest source release<br>(see <a href="download">Download</a> -&gt; &quot;The latest stable release&quot; -&gt; &quot;activemq-parent-x.x.x-source-release.zip&quot;)</li>
+<li>Extract the files from the ZIP file into a directory of your choice. For example:<pre><code>tar zxvf activemq.x.x-src.tar.gz
+</code></pre></li>
+<li><p>Build ActiveMQ using Maven:<br>The preferred method of building ActiveMQ is the following:</p>
+<pre><code>cd [activemq_install_dir]
+mvn clean install # add &quot;-Dmaven.test.skip=true&quot; if tests are failing on your system (should not happen)
+</code></pre><p>If Maven crashes with a java.lang.OutOfMemoryError, you you need to do this first (assuming a Bourne-like shell):</p>
+<pre><code>export MAVEN_OPTS=&quot;-Xmx512M&quot;
+</code></pre><p>If you prefer to use an IDE then you can auto-generate the IDE&apos;s project file using maven plugins:</p>
+<pre><code>mvn eclipse:eclipse
+</code></pre><p>or</p>
+<pre><code>mvn idea:idea
+</code></pre><p>Feel free to use any other applicable IDE. Please refer to the <a href="http://maven.apache.org/reference/plugins/plugins.html" target="_blank">plugin reference</a> for more details.<br><strong>NOTE:</strong> Working directories get created relative to the current directory. To create working directories in the proper place, ActiveMQ must be launched from its home/installation directory.</p>
+</li>
+<li><p>Proceed to the <a href="getting-started">#Starting ActiveMQ</a> section of this document.</p>
+</li>
+<li>Proceed to <a href="getting-started">#Testing the Installation</a> section.</li>
+</ol>
+<h4 id="unix-developers-release">Unix Developer&apos;s Release</h4>
+<p>This procedure explains how to download and install the latest developer&apos;s snapshot.</p>
+<ol>
+<li>Open the release archive: <a href="https://repository.apache.org/content/repositories/snapshots/org/apache/activemq/apache-activemq/" target="_blank">https://repository.apache.org/content/repositories/snapshots/org/apache/activemq/apache-activemq/</a><br>(open one of the SNAPSHOT directories)</li>
+<li>Select the version of ActiveMQ to download (you may have to scroll down to see the ActiveMQ snapshots).<br>The filename will be similar to: <code>activemq-x.x.x-tar.gz</code>.</li>
+<li>Extract the files from the gzip file into a directory of your choice. For example:<br>For a binary developer&apos;s snapshot:<pre><code>tar zxvf activemq-x.x.x.tar.gz
+</code></pre>For a source developer&apos;s snapshot:<pre><code>tar zxvf activemq-x.x.x-src.tar.gz
+</code></pre></li>
+<li>If a binary snapshot was downloaded, to make it executable, the <code>ActiveMQ</code> script may need its permissions changed:<pre><code>cd [activemq_install_dir]/bin
+chmod 755 activemq
+</code></pre></li>
+<li>For a binary snapshot, proceed to the <a href="getting-started">#Starting ActiveMQ</a> section of this document.</li>
+<li>If a source snapshot was downloaded perform steps 6 - 8 of the <a href="getting-started">#Unix Source Installation</a> procedure.</li>
+<li>Proceed to the <a href="getting-started">#Testing the Installation</a> section.</li>
+</ol>
+<h3 id="starting-activemq">Starting ActiveMQ</h3>
+<hr>
+<p>There now follows instructions on how to <a href="run-broker">run the ActiveMQ Message Broker</a>.</p>
+<h4 id="on-windows">On Windows:</h4>
+<p>From a console window, change to the installation directory and run <code>ActiveMQ</code>:</p>
+<pre><code>cd [activemq_install_dir]
+</code></pre><p>where <code>[activemq_install_dir]</code> is the directory in which ActiveMQ was installed, e.g., <code>c:\Program Files\ActiveMQ-5.x</code>.<br>Then type:</p>
+<pre><code>bin\activemq start
+</code></pre><p>`NOTE:** Working directories get created relative to the current directory. To create working directories in the proper place, ActiveMQ must be launched from its home/installation directory.</p>
+<h4 id="on-unix">On Unix:</h4>
+<p>From a command shell, change to the installation directory and run <code>ActiveMQ</code> as a <strong>foregroud</strong> process:</p>
+<pre><code>cd [activemq_install_dir]/bin
+./activemq console
+</code></pre><p>From a command shell, change to the installation directory and run <code>ActiveMQ</code> as a <strong>daemon</strong> process:</p>
+<pre><code>cd [activemq_install_dir]/bin
+./activemq start
+</code></pre><h4 id="more-help">More help</h4>
+<p>For other ways of running the broker see <a href="run-broker">Here</a>. For example you can run an <a href="how-do-i-embed-a-broker-inside-a-connection">embedded broker</a> inside your JMS Connection to avoid starting a separate process.</p>
+<h3 id="testing-the-installation">Testing the Installation</h3>
+<hr>
+<h4 id="using-the-administrative-interface">Using the administrative interface</h4>
+<ul>
+<li>Open the administrative interface</li>
+<li><ul>
+<li>URL: <a href="http://127.0.0.1:8161/admin/" target="_blank">http://127.0.0.1:8161/admin/</a></li>
+<li>Login: admin</li>
+<li>Passwort: admin</li>
+</ul>
+</li>
+<li>Navigate to &quot;Queues&quot;</li>
+<li>Add a queue name and click create</li>
+<li>Send test message by klicking on &quot;Send to&quot;</li>
+</ul>
+<h4 id="logfile-and-console-output">Logfile and console output</h4>
+<p>If ActiveMQ is up and running without problems, the Window&apos;s console window or the Unix command shell will display information similar to the following log line (see stdout output or &quot;[activemq_install_dir]/data/activemq.log&quot;):</p>
+<pre><code>Apache ActiveMQ 5.11.1 (localhost, ID:ntbk11111-50816-1428933306116-0:1) started | org.apache.activemq.broker.BrokerService | main
+</code></pre><h4 id="listen-port">Listen port</h4>
+<p>ActiveMQ&apos;s default port is 61616. From another window run netstat and search for port 61616.</p>
+<p>From a Windows console, type:</p>
+<pre><code>netstat -an|find &quot;61616&quot;
+</code></pre><p><strong>OR</strong></p>
+<p>From a Unix command shell, type:</p>
+<pre><code>netstat -nl|grep 61616
+</code></pre><h3 id="monitoring-activemq">Monitoring ActiveMQ</h3>
+<hr>
+<p>You can monitor ActiveMQ using the <a href="web-console">Web Console</a> by pointing your browser at <code>http://localhost:8161/admin</code>.</p>
+<p>From ActiveMQ 5.8 onwards the web apps is secured out of the box.<br>The default username and password is admin/admin. You can configure this in the conf/jetty-real.properties file.</p>
+<p>Or you can use the <a href="jmx">JMX</a> support to view the running state of ActiveMQ.</p>
+<p>For more information see the file <code>docs/WebConsole-README.txt</code> in the distribution.</p>
+<h3 id="stopping-activemq">Stopping ActiveMQ</h3>
+<hr>
+<p>For both Windows and Unix installations, terminate ActiveMQ by typing &quot;CTRL-C&quot; in the console or command shell in which it is running.</p>
+<p>If ActiveMQ was started in the background on Unix, the process can be killed, with the following:</p>
+<pre><code>cd [activemq_install_dir]/bin
+./activemq stop
+</code></pre><h3 id="configuring-activemq">Configuring ActiveMQ</h3>
+<hr>
+<p>The ActiveMQ broker should now run. You can configure the broker by specifying an <a href="xml-configuration">Xml Configuration</a> file as a parameter to the <em>activemq</em> command. An alternative is to use the <a href="broker-configuration-uri">Broker Configuration URI</a> to configure things on the command line in a concise format (though the configuration options are not as extensive as if you use Java or XML code). You can also</p>
+<p>Also see <a href="configuring-transports">Configuring Transports</a> to see how you can configure the various connection, transport and broker options using the connection URL in the ActiveMQConnectionFactory.</p>
+<p>See the <a href="configuration">Initial Configuration</a> for details of which jars you need to add to your classpath to start using ActiveMQ in your Java code</p>
+<p>If you want to use JNDI to connect to your JMS provider then please view the <a href="jndi-support">JNDI Support</a>. If you are a Spring user you should read about <a href="spring-support">Spring Support</a></p>
+<p>After the installation, ActiveMQ is running with a basic configuration. For details on configuring options, please see refer to the <a href="configuration">Configuration</a> section.</p>
+<h3 id="additional-resources">Additional Resources</h3>
+<hr>
+<p>If you are new to using ActiveMQ, running the <a href="web-samples">Web Samples</a> or the <a href="examples">Examples</a> is a good next step to learn more about ActiveMQ.</p>
+<p>The commercial providers listed on the <a href="issues">issues</a> page may also have additional documentation, examples, tutorials, etc... that can help you get started.</p>
 
                                 
                                 </section>
@@ -1715,8 +1957,12 @@
 
             
                 
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="getting-started.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Getting Started">
+                
+                <a href="xml-configuration.md" class="navigation navigation-next " aria-label="Next page: Configuration">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1727,7 +1973,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Getting Started","level":"1.2","depth":1,"path":"getting-started.md","ref":"getting-started.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2021-10-18T00:11:39.302Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-10-18T02:12:36.144Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Getting Started","level":"1.2","depth":1,"next":{"title":"Configuration","level":"1.3","depth":1,"path":"xml-configuration.md","ref":"xml-configuration.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"getting-started.md","mtime":"2021-10-18T01:06:16.759Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-10-18T02:12:36.144Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
